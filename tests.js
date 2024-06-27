@@ -61,4 +61,127 @@ describe('JS6 Lab Tests:', () => {
     })
   })
   /*--------------------------NEW TESTS BELOW-------------------------------*/
+
+// Tests for Question 1a:
+    describe('Q1a Testing for the sorting of an array', () => {
+      it('#Should sort the numeric array in asending order', () => {
+        let arrayOfNumbers = [1, 5, 3, 2, 4]
+        arrayOfNumbers = arrayOfNumbers.sort((a, b) => a - b)
+          
+      expect(arrayOfNumbers).to.deep.equal([1, 2, 3, 4, 5])
+      })
+    })
+
+// Tests for Question 1b:
+    describe('Q1b Testing for managing my wallet', () => {
+      class Wallet {
+        constructor(startingMoney) {
+          this.money = startingMoney
+        }
+      
+        addMoney(amount) {
+          this.money += amount  //added this.
+        }
+      
+        removeMoney(amount) {
+          this.money -= amount  //added this.
+        }
+      }
+      // const myWallet = new Wallet(100) Removed so I can perform more test data
+      // myWallet.removeMoney(14.99)      Removed so I can perform more test data
+      // myWallet.addMoney(3)             Removed so I can perform more test data
+
+      it('#Should add money to my wallet', () => {
+        let myWallet = new Wallet(25)
+        myWallet.addMoney(16)
+
+        expect(myWallet.money).to.equal(41)
+      })
+
+      it('#Should be able to remove money from my wallet', () => {
+        let myWallet = new Wallet(41)
+        myWallet.removeMoney(30)
+
+        expect(myWallet.money).to.equal(11)  // one test
+
+        myWallet.removeMoney(7.5)     // second test
+        expect(myWallet.money).to.equal(3.5)  
+
+      })
+      
+    })
+
+  // Tests for Question 1c:
+      describe('Q1c Testing for returning the correct Day of Week', () => {
+        const dayOfTheWeek = (num) => {
+          switch (num) {
+         case 1:
+          return 'Monday'
+          break;
+         case 2:
+          return 'Tuesday'
+          break;
+         case 3:
+          return 'Wednesday'
+          break;
+         case 4:
+          return 'Thursday'
+          break;
+         case 5:
+         return  'Friday'
+         break;
+         case 6:
+         return  'Saturday'
+         break;
+         case 7:
+         return  'Sunday'
+         break;
+         default:
+           // console.log('Err. Something went wrong.')
+           return 'Err. Something went wrong.'
+       }
+     }
+ 
+     it('#Should return correct day of week', () => {
+        expect(dayOfTheWeek(7)).to.equal('Sunday')
+
+        expect(dayOfTheWeek(4)).to.equal('Thursday')
+
+        expect(dayOfTheWeek(9)).to.equal('Err. Something went wrong.')
+      })
+      })
+
+      // Tests for Question 1d:
+      describe('Q1d Testing for Movie Character is a Wizard', () => {
+        const movieCharacters = [
+          {
+            name: 'Howl',
+            isAWizard: true,
+            quote: `You're wearing that hat? After all the magic I used to make your dress pretty?`,
+          },
+          {
+            name: 'Kalcifer',
+            isAWizard: false,
+            quote: `I don't cook! I'm a scary and powerful fire demon!`,
+          },
+          {
+            name: 'Gandalf',
+            isAWizard: true,
+            quote: `You shall not pass!`,
+          },
+          {
+            name: 'Luke Skywalker',
+            isAWizard: false,
+            quote: `May the Force be with you.`,
+          },
+        ]
+        
+        function onlyWizards(arrayOfCharacters) {
+          return arrayOfCharacters.filter((character) => character.isAWizard == true)
+        }
+      for (let character of onlyWizards(movieCharacters)){    // I need to do this for to check each array entry. Allows array to expand/contract
+        it('#Should return only objects where movieCharacters.isAWizard which has true', () => {
+          expect(character.isAWizard).to.equal(true)
+      })   }     
+      })
 })
